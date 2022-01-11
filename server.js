@@ -9,6 +9,7 @@ var fs = require('fs');
 var bGround = require('fcc-express-bground');
 var express = require('express');
 var myApp = require('./myApp');
+const { relative } = require('path');
 var app = express();
 
 if (!process.env.DISABLE_XORIGIN) {
@@ -56,7 +57,7 @@ if (!process.env.DISABLE_XORIGIN) {
 // })
 
 app.get("/", function(req, res) {
-  res.send("Hello Express");
+  res.sendFile(__dirname + "/views/index.html");
 });
 
 var port = process.env.PORT || 3000;
