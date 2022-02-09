@@ -1,3 +1,4 @@
+const { json } = require('body-parser');
 var express = require('express');
 var app = express();
 var bGround = require('fcc-express-bground');
@@ -35,16 +36,11 @@ bGround.log("Hello World");
 // });
 
 app.get("/json", function(req, res) {
-  console.log(process.env.MESSAGE_STYLE, " <= message style");
+  var jsonResponse = { "message": "Hello json"};
   if (process.env.MESSAGE_STYLE === "uppercase") {
-    res.json(
-      { "mesage": "HELLO JSON"}
-    )
-  } else {
-    res.json(
-      { "mesage": "Hello json"}
-    )
+    jsonResponse.message = jsonResponse.message.toUpperCase()
   }
+   res.json(jsonResponse);
 });
 
 
